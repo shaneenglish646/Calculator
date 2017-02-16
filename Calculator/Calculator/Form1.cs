@@ -18,11 +18,6 @@ namespace Calculator
 
         string theOperator;
 
-        bool plusButtonClicked = false;
-        bool minusButtonClicked = false;
-        bool multiplyButtonClicked = false;
-        bool divideButtonClicked = false;
-
         public Calculator()
         {
             InitializeComponent();
