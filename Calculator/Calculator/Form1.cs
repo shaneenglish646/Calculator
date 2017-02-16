@@ -15,11 +15,9 @@ namespace Calculator
 
         double total1 = 0;
         double total2 = 0;
-        bool plusButtonClicked = false;
-        bool minusButtonClicked = false;
-        bool multiplyButtonClicked = false;
-        bool divideButtonClicked = false;
-
+        
+        string theOperator;
+        
         public Calculator()
         {
             InitializeComponent();
@@ -84,73 +82,59 @@ namespace Calculator
         {
             total1 = total1 + double.Parse(txtDisplay.Text);
             txtDisplay.Clear();
-
-            plusButtonClicked = true;
-            minusButtonClicked = false;
-            multiplyButtonClicked = false;
-            divideButtonClicked = false;
+            
+            theOperator = "+";
         }
 
         private void btnEquals_Click(object sender, EventArgs e)
         {
-            if (plusButtonClicked == true)
+            switch(theOperator)
             {
-                total2 = total1 + double.Parse(txtDisplay.Text);
+                case "+" :
+                         total2 = total1 + double.Parse(txtDisplay.Text);
+                         break;
+                case "-" :
+                         total2 = total1 - double.Parse(txtDisplay.Text);
+                         break;
+                case "*" :
+                         total2 = total1 * double.Parse(txtDisplay.Text);
+                         break;
+                case "/" :
+                         total2 = total1 / double.Parse(txtDisplay.Text);
+                         break;
+                default :
+                        break;
             }
-            else if (minusButtonClicked == true)
-            {
-                total2 = total1 - double.Parse(txtDisplay.Text);
-            }
-            else if (multiplyButtonClicked == true)
-            {
-                total2 = total1 * double.Parse(txtDisplay.Text);
-            }
-            else if (divideButtonClicked == true)
-            {
-                total2 = total1 / double.Parse(txtDisplay.Text);
-            }
-            
-            txtDisplay.Text = total2.ToString();
-            total1 = 0;
         }
-
+        
         private void btnDecimal_Click(object sender, EventArgs e)
         {
             txtDisplay.Text = txtDisplay.Text + btnDecimal.Text;
         }
-
+        
         private void btnMinus_Click(object sender, EventArgs e)
         {
-            total1 = total1 + double.Parse(txtDisplay.Text);
+            total1 = total1 - double.Parse(txtDisplay.Text);
             txtDisplay.Clear();
-
-            plusButtonClicked = false;
-            minusButtonClicked = true;
-            multiplyButtonClicked = false;
-            divideButtonClicked = false;
+            
+            theOperator = "-";
         }
-
-        private void btnMultiply_Click(object sender, EventArgs e)
+       
+       private void btnMultiply_Click(object sender, EventArgs e)
         {
-            total1 = total1 + double.Parse(txtDisplay.Text);
+            total1 = total1 * double.Parse(txtDisplay.Text);
             txtDisplay.Clear();
-
-            plusButtonClicked = false;
-            minusButtonClicked = false;
-            multiplyButtonClicked = true;
-            divideButtonClicked = false;
+            
+            theOperator = "*";
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
-            total1 = total1 + double.Parse(txtDisplay.Text);
+            total1 = total1 / double.Parse(txtDisplay.Text);
             txtDisplay.Clear();
-
-            plusButtonClicked = false;
-            multiplyButtonClicked = false;
-            multiplyButtonClicked = false;
-            divideButtonClicked = true;
-
+            
+            theOperator = "/";
         }
+        
     }
 }
